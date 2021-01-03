@@ -1,0 +1,71 @@
+
+*)Binary Search Algorithm is one of the widely used searching techniques. It can be used to sort arrays. This searching technique follows the divide and conquer strategy. The search space always reduces to half in every iteration.
+
+*)Binary Search Algorithm is a very efficient technique for searching but it needs some order on which partition of the array will occur.
+Binary Search Pseudocode
+
+    We are given an input array that is supposed to be sorted in ascending order.
+    We take two variables which will act as a pointer i.e, beg, and end.
+    Beg will be assigned with 0 and the end will be assigned to the last index of the array.
+    Now we will introduce another variable mid which will mark the middle of the current array. That will be computed as (low+high)/2.
+    If the element present at the mid index is equal to the element to be searched, then just return the mid index.
+    If the element to be searched is smaller than the element present at the mid index, move end to mid-1, and all RHS will get discarded.
+    If the element to be searched is greater than the element present at the mid index, move beg to mid+1, and all LHS will get discarded.
+
+Binary Search Algorithm
+Iterative approach
+
+binarySearch(arr, size)
+		   loop until beg is not equal to end
+    midIndex = (beg + end)/2
+    if (item == arr[midIndex] )
+        return midIndex
+    else if (item > arr[midIndex] ) 
+        beg = midIndex + 1
+    else                       
+        end = midIndex - 1
+
+Recursive approach
+
+binarySearch(arr, item, beg, end)
+    if beg<=end
+        midIndex = (beg + end) / 2 
+        if item == arr[midIndex]
+            return midIndex
+        else if item < arr[midIndex]        
+            return binarySearch(arr, item, midIndex + 1, end)
+        else                              
+            return binarySearch(arr, item, beg, midIndex - 1)
+    
+    return -1
+
+Binary Search Algorithm Dry Run
+
+Item to be searched=20
+
+input:
+0	1	2	3	4
+10	11	16	20	23
+
+beg=0, end=4, mid=2
+0	1	2	3	4
+10	11	16	20	23
+
+beg=3, end=4, mid=3
+0	1	2	3	4
+10	11	16	20	23
+
+Element found at index 3, Hence 3 will get returned
+Binary Search Time Complexity
+
+    In each iteration, the search space is getting divided by 2. That means that in the current iteration you have to deal with half of the previous iteration array.
+    And the above steps continue till beg<end
+    Best case could be the case where the first mid-value get matched to the element to be searched
+    Best Time Complexity: O(1)
+    Average Time Complexity: O(logn)
+    Worst Time Complexity: O(logn)
+
+Binary Search Space Complexity
+
+    No auxiliary space is required in Binary Search implementation
+    Hence space complexity: O(1)
